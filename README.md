@@ -1,5 +1,4 @@
 # oryxa-ai
-# oryxa-ai
 
 # 🧠 Oryxa-AI Gemma Deployment Guide (RunPod GPU)
 
