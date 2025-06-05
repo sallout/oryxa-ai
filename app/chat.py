@@ -8,9 +8,9 @@ print(f"CUDA available: {torch.cuda.is_available()}")  # Check GPU
 try:
     llm = Llama(
         model_path="./model/gemma-3-12b-it-q4_0.gguf",
-        n_ctx=4096,
+        n_ctx=2048,
         n_threads=8,
-        n_gpu_layers=-40,  # <---- force full GPU offloading
+        n_gpu_layers= -1,  # <---- force full GPU offloading
         verbose=False  # Enable verbose logging
     )
     print("✅ Model loaded successfully!")
