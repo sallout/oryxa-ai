@@ -1,12 +1,12 @@
 # oryxa-ai
 
-# 🧠 Oryxa-AI Gemma Deployment Guide (RunPod GPU)
+# Oryxa-AI Gemma Deployment Guide (RunPod GPU)
 
 This guide documents the full process for deploying the `gemma-3-12b-it-q4_0.gguf` model on a RunPod A40 GPU instance using FastAPI and `llama-cpp-python` with CUDA support.
 
 ---
 
-## ✅ Step 1: Clean the Project
+## Step 1: Clean the Project
 - Removed `gemma-3-12b-it-q4_0.gguf` from `model/` to avoid 8GB GitHub limit
 - Created empty `model/` folder with a `.gitkeep`
 - Added `.gitignore`:
@@ -18,12 +18,12 @@ This guide documents the full process for deploying the `gemma-3-12b-it-q4_0.ggu
 
 ---
 
-## ✅ Step 2: Push Code to GitHub
+## Step 2: Push Code to GitHub
 - Uploaded project to a private repo: https://github.com/sallout/oryxa-ai
 
 ---
 
-## ✅ Step 3: Deploy GPU Pod on RunPod
+## Step 3: Deploy GPU Pod on RunPod
 - Chose Secure Cloud with:
   - **1x A40 GPU**
   - **9 vCPU / 50 GB RAM**
@@ -33,7 +33,7 @@ This guide documents the full process for deploying the `gemma-3-12b-it-q4_0.ggu
 
 ---
 
-## ✅ Step 4: Clone and Setup in Pod
+## Step 4: Clone and Setup in Pod
 ```bash
 cd /workspace
 git clone https://<username>:<token>@github.com/sallout/oryxa-ai.git
@@ -42,7 +42,7 @@ cd oryxa-ai
 
 ---
 
-## ✅ Step 5: Install System Dependencies
+## Step 5: Install System Dependencies
 ```bash
 apt update && apt install -y \
   build-essential cmake git curl wget \
@@ -51,7 +51,7 @@ apt update && apt install -y \
 
 ---
 
-## ✅ Step 6: Install Python Requirements
+## Step 6: Install Python Requirements
 ```bash
 pip install --upgrade pip
 pip install -r requirements.txt
@@ -59,7 +59,7 @@ pip install -r requirements.txt
 
 ---
 
-## ✅ Step 7: Compile llama-cpp-python with CUDA
+## Step 7: Compile llama-cpp-python with CUDA
 ```bash
 pip uninstall -y llama-cpp-python
 CMAKE_ARGS="-DLLAMA_CUDA=on" FORCE_CMAKE=1 pip install llama-cpp-python --no-cache-dir --force-reinstall
@@ -67,7 +67,7 @@ CMAKE_ARGS="-DLLAMA_CUDA=on" FORCE_CMAKE=1 pip install llama-cpp-python --no-cac
 
 ---
 
-## ✅ Step 8: Download the Model
+## Step 8: Download the Model
 ```bash
 mkdir -p model
 HF_TOKEN=hf_xxx
@@ -78,20 +78,20 @@ wget --header="Authorization: Bearer ${HF_TOKEN}" \
 
 ---
 
-## ✅ Step 9: Run the FastAPI Server
+## Step 9: Run the FastAPI Server
 ```bash
 uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 You should see:
 ```
 CUDA available: True
-✅ Model loaded successfully!
+Model loaded successfully!
 INFO:     Uvicorn running on http://0.0.0.0:8000
 ```
 
 ---
 
-## ✅ Step 10: Make API Request
+## Step 10: Make API Request
 Use Postman or curl:
 ```bash
 POST http://<POD_IP>:8000/v1/chat/completions
@@ -104,7 +104,7 @@ POST http://<POD_IP>:8000/v1/chat/completions
 
 ---
 
-## 🔁 Restart Instructions (If Pod Is Reset)
+## Restart Instructions (If Pod Is Reset)
 
 After restarting the pod:
 
@@ -129,7 +129,7 @@ CMAKE_ARGS="-DLLAMA_CUDA=on" FORCE_CMAKE=1 pip install llama-cpp-python --no-cac
 uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 
-✅ All project files and model will remain intact because they are stored in `/workspace` volume.
+All project files and model will remain intact because they are stored in `/workspace` volume.
 
 ---
 
