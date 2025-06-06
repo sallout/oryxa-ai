@@ -37,10 +37,9 @@ Your response must always follow this JSON format:
   ],
   "functionObj": {
     "functionName": "the function to execute",
-    "parameters": {
+    "parameters": [
       "parameterName1": "value1",
-      "parameterName2": "value2"
-    }
+    ]
   },
   "confirmationType": "NONE | TEXT | EXTERNAL"
 }
