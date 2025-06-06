@@ -154,8 +154,12 @@ git pull
   pip uninstall -y llama-cpp-python
   CMAKE_ARGS="-DLLAMA_CUDA=on" FORCE_CMAKE=1 pip install llama-cpp-python --no-cache-dir --force-reinstall
 ``
-Then restart it:
+Then restart it (session will be terminated once you close the web-terimnal):
 uvicorn app.main:app --host 0.0.0.0 --port 8000
+
+to start the service permanently use
+nohup uvicorn app.main:app --host 0.0.0.0 --port 8000 > log.txt 2>&1 &
+
 
 
 
