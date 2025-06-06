@@ -10,7 +10,8 @@
         "getUserTask"
       ],
       "description": "delete user task by the task object",
-      "confirmationType": "NONE"
+      "confirmationType": "TEXT",
+      "returnsType": null
     },
     {
       "name": "insertTask",
@@ -22,7 +23,8 @@
       "dependsOn": [
       ],
       "description": "insert new task",
-      "confirmationType": "NONE"
+      "confirmationType": "NONE",
+      "returnsType": null
     },
     {
       "name": "getUserTask",
@@ -31,7 +33,8 @@
       "dependsOn": [
       ],
       "description": "get the user tasks",
-      "confirmationType": "NONE"
+      "confirmationType": "NONE",
+      "returnsType": "com.oryxa.oryxaai.data.models.UserTasks"
     },
     {
       "name": "login",
@@ -42,7 +45,8 @@
       "dependsOn": [
       ],
       "description": "Login by username and password",
-      "confirmationType": "NONE"
+      "confirmationType": "NONE",
+      "returnsType": null
     }
   ]
 }
