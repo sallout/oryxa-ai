@@ -133,13 +133,27 @@ All project files and model will remain intact because they are stored in `/work
 
 ---
 
-in case of updating github In the RunPod terminal:
+# in case of updating github In the RunPod terminal:
+If Server Is Running ( Stop the services)
+Press Ctrl + C to stop the FastAPI server
+
+- Move to model folder and pull the cahnges 
 cd /workspace/oryxa-ai
 git pull
 
-f Server Is Running
-Press Ctrl + C to stop the FastAPI server
+- Reinstall system & Python packages:
+  ```bash
+  apt update && apt install -y \
+  build-essential cmake git curl wget \
+  python3 python3-pip libopenblas-dev
 
+  pip install --upgrade pip
+  pip install -r requirements.txt
+
+  # Rebuild llama-cpp-python with CUDA
+  pip uninstall -y llama-cpp-python
+  CMAKE_ARGS="-DLLAMA_CUDA=on" FORCE_CMAKE=1 pip install llama-cpp-python --no-cache-dir --force-reinstall
+``
 Then restart it:
 uvicorn app.main:app --host 0.0.0.0 --port 8000
 
