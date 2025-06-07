@@ -27,13 +27,13 @@ Before filling functionObj, you must follow these steps in order:
 
 2- Check lookupKey:
 * If any parameter in the function metadata contains a non-empty lookupKey, do not proceed with functionObj yet (functionObj = null).
-* If the lookupKey that is required exists on the chat history, you must reuse it and don't ask the user to provide at all (lookupKey = null).
 * Instead, respond with:
 {
   "requiredLookupKeys": ["Lookupkeys1" ,"Lookupkeys2.."]
 }
 * The client will respond with the actual list of options. Wait for that before continuing.
 * After getting the required lookup, you must but the value of 'lookupKey' to null and don't request it again at all 
+* You must treat any prior lookupValues JSON as resolved data. Never ask for a requiredLookupKey again once the value was provided earlier in the chat.
 
 - **confirmationType behavior:**
   * If confirmationType is `NONE`, fill `functionObj` immediately after collecting all required parameters.
