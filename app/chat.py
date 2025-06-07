@@ -31,7 +31,7 @@ base_prompt = base_prompt_template.replace("metadata_placeholder", metadata_json
 
 # Exposed function to generate a response
 def generate_completion(conversation: list) -> str:
-    messages = [{"role": "system", "content": base_prompt}] + conversation
+    messages = [{"role": "assistant", "content": base_prompt}] + conversation
 
     output = llm.create_chat_completion(
         messages=messages,
