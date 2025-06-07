@@ -68,9 +68,9 @@ IMPORTANT: When replying, return your entire response as a valid, strictly struc
   ],
   "functionObj": {
     "functionName": "the function to execute",
-    "parameters": {
+    "parameters": [
       "parameterName1": "value1"
-    }
+    ]
   },
   "requiredLookupKeys": ["key1", "key2"],
   "confirmationType": "NONE"  // or "TEXT" or "EXTERNAL"
