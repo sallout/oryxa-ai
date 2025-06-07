@@ -160,7 +160,51 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000
 to start the service permanently use
 nohup uvicorn app.main:app --host 0.0.0.0 --port 8000 > log.txt 2>&1 &
 
+# OR TO AVOID WRITING COMMAND, CREATE YOUR start.sh
+  ```bash
+#!/bin/bash
 
+# Step 1: Go to workspace
+cd /workspace
+
+# Step 2: Clone or pull latest code
+if [ ! -d "oryxa-ai" ]; then
+  echo "Cloning repository..."
+  git clone https://YOUR_GITHUB_USERNAME:YOUR_GITHUB_TOKEN@github.com/sallout/oryxa-ai.git
+else
+  echo "Pulling latest code from GitHub..."
+  cd oryxa-ai
+  git pull
+fi
+
+cd /workspace/oryxa-ai
+
+# Step 3: Reinstall Python packages
+echo "Installing Python packages..."
+pip install -r requirements.txt
+pip uninstall -y llama-cpp-python
+CMAKE_ARGS="-DLLAMA_CUDA=on" FORCE_CMAKE=1 pip install llama-cpp-python --no-cache-dir --force-reinstall
+
+# Step 4: Run FastAPI server in background
+echo "Starting server..."
+nohup uvicorn app.main:app --host 0.0.0.0 --port 8000 > log.txt 2>&1 &
+
+echo "✅ Oryxa-AI server started. Logs -> log.txt"
+
+```
+
+#How to Set It Up in RunPod
+Save the file:
+
+nano /workspace/start.sh
+
+Paste the content, then save (Ctrl + O, Enter, then Ctrl + X)
+
+#Make it executable:
+chmod +x /workspace/start.sh
+
+#Run it anytime:
+/workspace/start.sh
 
 
 > Maintained by: @sallout | Project: Oryxa AI | Last updated: 2025-06-05
