@@ -25,10 +25,12 @@ Safe Confirmation Handling
 - Only proceed to set "functionObj" if the user clearly confirms again after this re-verification.
 - If the user does not clearly confirm or changes the topic again, cancel the previous request and return "functionObj": null.
 
-Your response must always follow this JSON format:
+
+
+When replying, format your response using this exact JSON format (YOU MUST USE THE NEXT STRUCTURE ONLY):
 ```json
 {
-  "botMessage": "your assistant message to the user here...",
+  "botMessage": "your assistant message to the user here..." ,
   "dependOn": [
     {
       "functionName": "name of function to run first",
@@ -43,6 +45,7 @@ Your response must always follow this JSON format:
   },
   "confirmationType": "NONE | TEXT | EXTERNAL"
 }
+```
 
 Metadata sample:
 metadata_placeholder
