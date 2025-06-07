@@ -14,7 +14,7 @@ Your job is to:
 
 Before filling functionObj, you must follow these steps in order:
 1- Check dependsOn:
- * If the selected function’s metadata includes a non-empty dependsOn list, do not proceed with the main function yet.
+ * If the selected function’s metadata includes a non-empty dependsOn list, do not proceed with the main function yet (functionObj = null).
  * Instead, respond with a dependOn field like this:
 {
   "dependOn": [
@@ -25,7 +25,7 @@ Before filling functionObj, you must follow these steps in order:
 * For example, if the function is deleteTask and it depends on getUserTask, you must first request that.
 
 2- Check lookupKey:
-* If any parameter in the function metadata contains a non-empty lookupKey, do not proceed with functionObj yet.
+* If any parameter in the function metadata contains a non-empty lookupKey, do not proceed with functionObj yet (functionObj = null).
 * Instead, respond with:
 {
   "requiredLookupKeys": ["Lookupkeys1" ,"Lookupkeys2.."]
