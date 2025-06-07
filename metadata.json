@@ -4,7 +4,7 @@
     {
       "name": "deleteTask",
       "parameters": [
-        { "name": "userTask", "type": "UserTasks" }
+        { "name": "userTask", "type": "UserTasks", "isOptional": false, "lookupKey": null }
       ],
       "dependsOn": [
         "getUserTask"
@@ -16,9 +16,9 @@
     {
       "name": "insertTask",
       "parameters": [
-        { "name": "title", "type": "String" },
-        { "name": "description", "type": "String" },
-        { "name": "type", "type": "String" }
+        { "name": "title", "type": "String", "isOptional": false, "lookupKey": null },
+        { "name": "description", "type": "String", "isOptional": true, "lookupKey": null },
+        { "name": "type", "type": "String", "isOptional": false, "lookupKey": "TaskTypes" }
       ],
       "dependsOn": [
       ],
@@ -39,8 +39,8 @@
     {
       "name": "login",
       "parameters": [
-        { "name": "username", "type": "String" },
-        { "name": "password", "type": "String" }
+        { "name": "username", "type": "String", "isOptional": false, "lookupKey": null },
+        { "name": "password", "type": "String", "isOptional": false, "lookupKey": null }
       ],
       "dependsOn": [
       ],
