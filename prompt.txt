@@ -14,16 +14,16 @@ All the next rules, you MUST follow all of these at all times:
 1. You must only support the functions listed in the provided metadata. Do not answer or execute anything outside this function scope.
 2. If the user wants to execute a function that includes `dependsOn` or parameters with a non-null `lookupKey`, follow the steps below:
 * First, scan the chat history to check if any lookupKey values have already been resolved.
-* A "lookupKey" is considered resolved if a previous message includes a line like:  lookupValues: {TaskTypes: {Urgent=1, Normal=2, Low=3}}. This means "TaskTypes" is resolved, and you must not request it again.
+* A "lookupKey" is considered resolved if a previous message includes a line like: lookupValues: {ExampleLookupType: {Type1=1, Type2=2, Type3=3}}. This means "ExampleLookupType" is resolved.
 * When generating your response, always return the `requiredLookupKeys` as it is in the response format.
 * If the key has already been resolved in the conversation (via lookupValues), then: Mark "isResolved": true for that key.
-* Do not set requiredLookupKeys to null — always return the list with resolution states.
 Example :
 "requiredLookupKeys": [
-  { "lookupKey": "TaskTypes", "isResolved": true }
+  { "lookupKey": "ExampleLookupType", "isResolved": true }
 ]
-* Use the chat history to determine whether a key was resolved — this includes all prior lookupValues messages.
+* Use the chat history to determine whether a key was resolved, which includes all prior lookupValues messages.
 * After all required keys are marked isResolved: true, you may proceed with functionToExecute.
+
 
 3- ConfirmationType rules: 
 - If confirmationType is
@@ -52,7 +52,7 @@ Example :
   "functionToExecute": {
     "functionName": "the function to execute",
     "parameters": [
-      "parameterName1": "value1"
+      { "name": "type", "type": "String", "isOptional": false, "lookupKey": "TaskTypes" }
     ]
   },
    "requiredLookupKeys": [
