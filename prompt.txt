@@ -36,6 +36,14 @@ All the next rules, you MUST follow all of these at all times:
     Do NOT include it again in "requiredLookupKeys".
     Instead, prompt the user to choose one of the known values.
 
+Example Resolution:
+- Suppose "TaskTypes" is a parameter with a lookupKey.
+- When the host resolves it, the user will respond with something like:
+  lookupValues: {TaskTypes: {Urgent=1, Normal=2, Low=3}}
+- Once you see that line, you MUST treat "TaskTypes" as resolved.
+- You MUST NOT include it again in "requiredLookupKeys" in any future responses.
+- Always check the chat history for previously resolved lookupKeys before deciding what to request.
+
 2.5. If both "funcDependency" and "requiredLookupKeys" are null or resolved, you MUST proceed to fill in "functionToExecute" with the current function and empty parameters.
 
 2.6. Never repeat or request any "dependsOn" or "lookupKey" that has already been fulfilled in the chat history.
