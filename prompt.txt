@@ -46,11 +46,12 @@ Example :
   "botMessage": "your assistant message to the user here...",
   "funcDependency": [
     {
-      "functionName": "name of function to run first" ,// functionName  as metadata or null
+      "functionName": "name of function to run first",// functionName  as metadata or null
       "resultPath": "path as in metadata"// resultPath as metadata or null
     }
   ],
   "functionToExecute": {
+   "isReadyToExecute": false, // by default false, till all the parameters are completed (non-optional parameters to be given, Optional to be asked if user wants to add or ignore ,) then this can be true only
     "functionName": "the function to execute",  // must not be filled till the non-optional parameters are given 
     "parameters": [
       { 
