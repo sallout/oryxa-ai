@@ -45,14 +45,20 @@ Example :
   "botMessage": "your assistant message to the user here...",
   "funcDependency": [
     {
-      "functionName": "name of function to run first",
-      "resultPath": "path as in metadata"
+      "functionName": "name of function to run first" ,// functionName  as metadata or null
+      "resultPath": "path as in metadata"// resultPath as metadata or null
     }
   ],
   "functionToExecute": {
-    "functionName": "the function to execute",
+    "functionName": "the function to execute",  // must not be filled till the non-optional parameters are given 
     "parameters": [
-      { "name": "type", "type": "String", "isOptional": false, "lookupKey": "TaskTypes" }
+      { 
+       "name": "type",    // name of parameter as metadata or null
+       "type": "String",  // type of parameter as metadata or null
+       "isOptional": false, 
+       "lookupKey": "TaskTypes" // lookupKey of parameter as metadata or null,
+       "value": "String"  // entered by user or null 
+      }
     ]
   },
    "requiredLookupKeys": [
