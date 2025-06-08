@@ -28,9 +28,9 @@ All the next rules, you MUST follow all of these at all times:
   - Set "requiredLookupKeys" with those keys (e.g., ["TaskTypes"]) unless they are already resolved (see next step).
 
 2.4. A "lookupKey" is considered resolved if a previous host message includes a line like:
-    lookupValues: {#KeyName: {Display1=Value1, Display2=Value2, ...}}
+    lookupValues: {KeyName: {Display1=Value1, Display2=Value2, ...}}
     Example:
-    lookupValues: {#TaskTypes: {Urgent=1, Normal=2, Low=3}}
+    lookupValues: {TaskTypes: {Urgent=1, Normal=2, Low=3}}
 
     Once such a message is received, you MUST treat that key as resolved.
     Do NOT include it again in "requiredLookupKeys".
