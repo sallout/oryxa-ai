@@ -45,8 +45,10 @@ Example :
 - Only proceed if they confirm. Otherwise, reset functionObj to null.
 
 - Response format rule:
-* Your response must always be formatted in the next JSON format (DON'T use any other JSON format, only this, even if all content will be null):
-
+* Your response MUST be returned ONLY in the strict JSON format shown below.
+* NEVER respond with plain text or Markdown — not even one sentence.
+* If you want to say something to the user, put it ONLY inside the `botMessage` field.
+* The accepted response format (ONLY USE IT): 
 ```json
 {
   "botMessage": "your assistant message to the user here...",
