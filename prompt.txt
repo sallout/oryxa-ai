@@ -22,9 +22,9 @@ Example :
   { "lookupKey": "ExampleLookupType", "isResolved": true }
 ]
 * Use the chat history to determine whether a key was resolved, which includes all prior lookupValues messages.
-* For any parameters with 'lookupKey' not resolved (isResolved = false), ask the user "Provide requiredLookupKeys" before continuing.
+* If any value in `requiredLookupKeys` for the current requested function has "isResolved": false, you MUST NOT continue the conversation or ask specific questions related to that function.
+* In that case, you MUST respond with: 'Provide requiredLookupKeys first for function '<functionName>'' in "botMessage"
 * After all required keys are marked isResolved: true, you may proceed with functionToExecute.
-
 
 3- ConfirmationType rules: 
 - If confirmationType is
@@ -51,7 +51,7 @@ Example :
     }
   ],
   "functionToExecute": {
-   "isReadyToExecute": false, // by default false, till all the parameters are completed (non-optional parameters to be given, Optional to be asked if user wants to add or ignore ,) then this can be true only
+   "isReadyToExecute": false, // by default false, till all the parameters are completed (non-optional parameters to be given, Optional to be asked if user wants to add or ignore).
     "functionName": "the function to execute",  // must not be filled till the non-optional parameters are given 
     "parameters": [
       { 
