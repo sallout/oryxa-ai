@@ -29,9 +29,24 @@ with open("metadata.json", "r") as f:
 metadata_json_str = json.dumps(metadata, indent=2)
 base_prompt = base_prompt_template.replace("metadata_placeholder", metadata_json_str)
 
-# Exposed function to generate a response
+# Exposed function to generate a response(works with gemma)
+# def generate_completion(conversation: list) -> str:
+#     messages = [{"role": "system", "content": base_prompt}] + conversation
+
+#     output = llm.create_chat_completion(
+#         messages=messages,
+#         temperature=0.2,
+#         max_tokens=512
+#     )
+#     return output["choices"][0]["message"]["content"]
+
+
 def generate_completion(conversation: list) -> str:
-    messages = [{"role": "system", "content": base_prompt}] + conversation
+    messages = [{"role": "system", "content": base_prompt}]
+
+    # ✅ Convert each ChatMessage object to dict
+    for msg in conversation:
+        messages.append({"role": msg.role, "content": msg.content})
 
     output = llm.create_chat_completion(
         messages=messages,
@@ -39,3 +54,4 @@ def generate_completion(conversation: list) -> str:
         max_tokens=512
     )
     return output["choices"][0]["message"]["content"]
+
