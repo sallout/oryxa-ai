@@ -24,9 +24,11 @@ RUN mkdir -p model
 
 # Download the GGUF model using Hugging Face token
 ARG HF_TOKEN
-RUN wget --header="Authorization: Bearer ${HF_TOKEN}" \
-  https://huggingface.co/unsloth/gemma-3-12b-it-GGUF/resolve/main/gemma-3-12b-it-Q8_0.gguf \
-  -O model/gemma-3-12b-it-Q8_0.gguf
+RUN mkdir -p model \
+ && wget --header="Authorization: Bearer ${HF_TOKEN}" \
+ https://huggingface.co/unsloth/gemma-3-12b-it-GGUF/resolve/main/gemma-3-12b-it-Q8_0.gguf \
+ -O model/gemma-3-12b-it-q8_0.gguf
+
 
 EXPOSE 8000
 
