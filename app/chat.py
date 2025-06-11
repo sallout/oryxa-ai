@@ -36,7 +36,8 @@ def generate_completion(conversation: list) -> str:
     output = llm.create_chat_completion(
         messages=messages,
         temperature=0.2,
-        max_tokens=512
+        max_tokens=6144,
+          stop=["```"]
     )
     return output["choices"][0]["message"]["content"]
 
