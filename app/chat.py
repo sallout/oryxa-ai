@@ -29,9 +29,13 @@ with open("metadata.json", "r") as f:
 metadata_json_str = json.dumps(metadata, indent=2)
 base_prompt = base_prompt_template.replace("metadata_placeholder", metadata_json_str)
 
-# Exposed function to generate a response(works with gemma)
 def generate_completion(conversation: list) -> str:
-    messages = [{"role": "system", "content": base_prompt}] + conversation
+    # Check if any message in the conversation has role == 'system'
+    has_system = any(msg.get("role") == "system" for msg in conversation)
+    if has_system:
+        messages = conversation
+    else:
+        messages = [{"role": "system", "content": base_prompt}] + conversation
 
     output = llm.create_chat_completion(
         messages=messages,
@@ -39,5 +43,16 @@ def generate_completion(conversation: list) -> str:
         max_tokens=3072
     )
     return output["choices"][0]["message"]["content"]
+
+# Exposed function to generate a response(works with gemma)
+# def generate_completion(conversation: list) -> str:
+#     messages = [{"role": "system", "content": base_prompt}] + conversation
+
+#     output = llm.create_chat_completion(
+#         messages=messages,
+#         temperature=0.2,
+#         max_tokens=3072
+#     )
+#     return output["choices"][0]["message"]["content"]
 
 
