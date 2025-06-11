@@ -26,8 +26,8 @@ RUN mkdir -p model
 ARG HF_TOKEN
 RUN mkdir -p model \
  && wget --header="Authorization: Bearer ${HF_TOKEN}" \
- https://huggingface.co/unsloth/gemma-3-12b-it-GGUF/resolve/main/gemma-3-12b-it-Q8_0.gguf \
- -O model/gemma-3-12b-it-q8_0.gguf
+ https://huggingface.co/gaianet/Qwen2.5-14B-Instruct-GGUF/resolve/main/Qwen2.5-14B-Instruct-Q8_0.gguf \
+ -O model/qwen2.5-14b-instruct-q8_0.gguf
 
 
 EXPOSE 8000
