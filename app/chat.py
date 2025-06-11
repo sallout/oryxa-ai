@@ -31,7 +31,7 @@ base_prompt = base_prompt_template.replace("metadata_placeholder", metadata_json
 
 def generate_completion(conversation: list) -> str:
     # Check if any message in the conversation has role == 'system'
-    has_system = any(msg.role == "system" for msg in conversation
+    has_system = any(msg.role == "system" for msg in conversation)
     if has_system:
         messages = conversation
     else:
