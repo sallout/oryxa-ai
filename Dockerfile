@@ -26,8 +26,8 @@ RUN mkdir -p model
 ARG HF_TOKEN
 RUN mkdir -p model \
  && wget --header="Authorization: Bearer ${HF_TOKEN}" \
-https://huggingface.co/lmstudio-community/Meta-Llama-3-8B-Instruct-GGUF/resolve/main/Meta-Llama-3-8B-Instruct-Q8_0.gguf \
--O model/llama-3-8b-instruct-q8_0.gguf
+https://huggingface.co/google/gemma-3b-12b-it-GGUF/resolve/main/gemma-3-12b-it-q8_0.gguf \
+-O model/gemma-3-12b-it-q8_0.gguf
 
 
 EXPOSE 8000
