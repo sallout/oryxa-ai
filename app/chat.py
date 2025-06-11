@@ -7,7 +7,7 @@ print(f"CUDA available: {torch.cuda.is_available()}")  # Check GPU
 # Load the model with explicit error handling
 try:
     llm = Llama(
-        model_path="./model/qwen2.5-14b-instruct-q8_0.gguf",
+        model_path="./model/llama-3-8b-instruct-q8_0.gguf",
         n_ctx=4096,
         n_threads=8,
         n_gpu_layers= -1,  # <---- force full GPU offloading
