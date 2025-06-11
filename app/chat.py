@@ -8,7 +8,7 @@ print(f"CUDA available: {torch.cuda.is_available()}")  # Check GPU
 try:
     llm = Llama(
         model_path="./model/qwen2.5-14b-instruct-q8_0.gguf",
-        n_ctx=2048,
+        n_ctx=4096,
         n_threads=8,
         n_gpu_layers= -1,  # <---- force full GPU offloading
         verbose=False  # Enable verbose logging
@@ -36,7 +36,7 @@ def generate_completion(conversation: list) -> str:
     output = llm.create_chat_completion(
         messages=messages,
         temperature=0.2,
-        max_tokens=4096
+        max_tokens=3072
     )
     return output["choices"][0]["message"]["content"]
 
